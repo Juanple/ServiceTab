@@ -11,8 +11,9 @@ export default function MenuGeneral(){
         {'name': 'Vegetales', 'imageURL': undefined, 'color': 'green', 'target': 'vegetales'}
     ]
 
-    function selectMenuGeneralButton(section) {
-
+    const navigate = useNavigate();
+    function selectMenuGeneralButton(targetSection) {
+        navigate(targetSection);
     }
 
     return (
