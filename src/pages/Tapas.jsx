@@ -1,4 +1,4 @@
-import { cart } from '../services/cart'
+import { post } from "../services/post"
 
 export default function Tapas() {
     
@@ -16,7 +16,7 @@ export default function Tapas() {
             {tapasList.map((product, index) => {
                 if (product['imageURL'] == undefined) { // Si no tiene imagen asignada
                     return <button
-                    onClick={() => (cart(product))} // Llamar a la funcion
+                    onClick={() => (post(product, '/tables/menu-general/'))} // Llamar a la funcion
                     key={index} // Indice unico
                     className="bg-[var(--color)] p-2 cursor-pointer" // Estilos
                     style={{'--color': product['color']}} // Variable de color

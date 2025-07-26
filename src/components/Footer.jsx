@@ -8,6 +8,8 @@ export default function Footer() {
     }
     
     return (
-        <button onClick={() => (saveProducts(productList))}>Enviar</button>
+        <div className='h-10 bg-gray-200'>
+            <button onClick={() => (saveProducts(productList))}>Enviar</button>
+        </div>
     )
 }

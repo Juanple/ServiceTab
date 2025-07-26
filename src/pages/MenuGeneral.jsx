@@ -8,7 +8,8 @@ export default function MenuGeneral(){
         {'name': 'Parrillas', 'imageURL': undefined, 'color': 'yellow', 'target': 'parrilla'},
         {'name': 'Arroces', 'imageURL': undefined, 'color': 'gray', 'target': 'arroces'},
         {'name': 'Especialidades', 'imageURL': undefined, 'color': 'blue', 'target': 'especialidades'},
-        {'name': 'Vegetales', 'imageURL': undefined, 'color': 'green', 'target': 'vegetales'}
+        {'name': 'Vegetales', 'imageURL': undefined, 'color': 'green', 'target': 'vegetales'},
+        {'name': 'Bebidas', 'imageURL': undefined, 'color': 'blue', 'target': 'bebidas'}
     ]
 
     const navigate = useNavigate();

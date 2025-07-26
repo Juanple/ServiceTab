@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { post } from "../services/post";
 
 export default function WaiterSelector(){
 
@@ -11,11 +12,12 @@ export default function WaiterSelector(){
 
     const navigate = useNavigate();
     function selectWaiter(waiterName) {
-        navigate(`/tables/${waiterName}`);
+        navigate(`tables`);
+        post({'waiter': waiterName}, '/');
     }
 
     return (
-        <div className="flex container w-full flex-wrap gap-2">
+        <div className="flex container w-full flex-wrap gap-2 h-full">
             {waiterList.map((waiter, index) => {
 
                 // Estilo de boton sin foto

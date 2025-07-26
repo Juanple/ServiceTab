@@ -8,15 +8,20 @@ import Footer from "./components/Footer.jsx";
 
 export default function App() {
   return (
-    <>
-    <Header></Header>
-    <Routes>
-      <Route path="/" element={<WaiterSelector></WaiterSelector>}></Route>
-      <Route path="/tables/:waiter" element={<TablesSelector></TablesSelector>}></Route>
-      <Route path="/tables/:waiter/menu-general/:table" element={<MenuGeneral></MenuGeneral>}></Route>
-      <Route path="/tables/:waiter/menu-general/:table/tapas" element={<Tapas></Tapas>}></Route>
-    </Routes>
-    <Footer></Footer>
-    </>
+    <div className="flex flex-col min-h-screen"> 
+      {/*<Header />*/}
+
+      <main className="flex-grow">
+        <Header></Header>
+        <Routes>
+          <Route path="/" element={<WaiterSelector />} />
+          <Route path="/tables" element={<TablesSelector />} />
+          <Route path="/tables/menu-general" element={<MenuGeneral />} />
+          <Route path="/tables/menu-general/tapas" element={<Tapas />} />
+        </Routes>
+      </main>
+
+      <Footer /> 
+    </div>
   );
 }

@@ -1,28 +1,30 @@
-import { useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Header() {
 
     const location = useLocation();
-    let urlList = location.pathname.split('/'); // ["", "tables", "Gonza", ...]
-
-    let waiter;
-    if (urlList.length >= 3) { // Sacar el camarero de la URL
-        waiter = `Comandero: ${urlList[2]}`;
-    } else {
-        waiter = '';
-    }
-    
     let text;
-    let actualSection = urlList[urlList.length - 2]; // Seccion de la URL actual
-    switch (actualSection) {
-        case '':
+    const [waiter, setWaiter] = useState('');
+
+    fetch('http://127.0.0.1:5000/', {method: 'GET'}) // Asignar camarero al header
+    .then(response => response.json())
+    .then(data => {
+        setWaiter(data['waiter'])
+    })
+
+    switch (location.pathname) { // Asignar texto de ubicacion al header
+        case '/':
             text = 'Seleccionar camarero'
             break
-        case 'tables':
+        case '/tables':
             text = 'Seleccionar mesa'
             break
-        case 'menu-general':
+        case '/tables/menu-general/':
             text = 'Menu General'
+            break
+        case '/tables/menu-general/tapas':
+            text = 'Tapas'
             break
     };
 
@@ -33,7 +35,7 @@ export default function Header() {
                 <p className="text-s">{waiter}</p>
                 <h1 className="text-xl">{text}</h1>
             </div>
-            <p className="flex items-center">EMOJI</p>
+            <p className="flex items-center">EMOJI</p>{console.log('Header actualizado: ', waiter)}
         </div>
     )
 }

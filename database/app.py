@@ -1,14 +1,19 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Blueprint
 from flask_cors import CORS
+
+from routes.waiter import waiter
+from routes.table import table
+from routes.product import product
+from routes.header import header
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/', methods=['POST'])
-def postProducts():
-    data = request.get_json()
-    print(data)
-    return jsonify({'message': 'Datos recibidos'}), 201   
+# Definir los blueprints
+app.register_blueprint(waiter)
+app.register_blueprint(table)
+app.register_blueprint(product)
+app.register_blueprint(header)
 
 if __name__ == '__main__':
     app.run(debug=True)
