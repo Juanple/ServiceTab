@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useState } from "react";
 import { post } from "../services/post";
 
@@ -20,9 +20,9 @@ export default function TablesSelector(){
     }
 
     const navigate = useNavigate();
-    function selectTable(table) { // Funcion para seleccionar la mesa
+    async function selectTable(table) { // Funcion para seleccionar la mesa
+        await post({'table': table, 'range': rangeNumber}, '/tables');
         navigate(`menu-general/`);
-        post({'table': table, 'range': rangeNumber}, '/tables');
     }
 
     return (

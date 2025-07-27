@@ -1,4 +1,5 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import OrderSummary from '../components/OrderSummary'
 
 export default function MenuGeneral(){
     
@@ -13,18 +14,17 @@ export default function MenuGeneral(){
     ]
 
     const navigate = useNavigate();
-    function selectMenuGeneralButton(targetSection) {
-        navigate(targetSection);
-    }
 
     return (
-        <div className="flex flex-wrap w-full gap-2">
+        <>
+        <OrderSummary></OrderSummary>
+        <div className="flex flex-wrap w-full gap-2">            
             {menuGeneralList.map((section, index) => {
 
                 // Estilo de boton sin foto
                 if (section['imageURL'] == undefined) {
                     return <button
-                onClick={() => (selectMenuGeneralButton(section['target']))} // Llamar a la funcion
+                onClick={() => (navigate(section['target']))} // Llamar a la funcion
                 key={index} // Indice diferente a cada uno
                 className="bg-[var(--color)] p-2 cursor-pointer hover:bg-[var(--color)]/60" // Estilos
                 style={{'--color': section['color']}} // Variable de color del bg
@@ -37,5 +37,6 @@ export default function MenuGeneral(){
                 }
             })}
         </div>
+        </>
     )
 }

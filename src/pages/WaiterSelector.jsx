@@ -11,9 +11,9 @@ export default function WaiterSelector(){
     ]
 
     const navigate = useNavigate();
-    function selectWaiter(waiterName) {
+    async function selectWaiter(waiterName) {
+        await post({'waiter': waiterName}, '/');
         navigate(`tables`);
-        post({'waiter': waiterName}, '/');
     }
 
     return (

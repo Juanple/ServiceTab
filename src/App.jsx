@@ -8,11 +8,9 @@ import Footer from "./components/Footer.jsx";
 
 export default function App() {
   return (
-    <div className="flex flex-col min-h-screen"> 
-      {/*<Header />*/}
-
+    <div className="flex flex-col min-h-screen">       
       <main className="flex-grow">
-        <Header></Header>
+        <Header></Header> 
         <Routes>
           <Route path="/" element={<WaiterSelector />} />
           <Route path="/tables" element={<TablesSelector />} />

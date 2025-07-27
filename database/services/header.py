@@ -4,7 +4,7 @@ from connection import getConnection
 
 header = Blueprint('header', __name__)
 @header.route('/', methods=['GET'])
-def saveHeaderInfo():
+def getHeaderInfo():
 
     connection = getConnection()
     cursor = connection.cursor()
