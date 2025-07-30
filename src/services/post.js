@@ -7,4 +7,5 @@ export async function post(object, route) {
         body: JSON.stringify(object),
     });
     const data = await response.json();
+    return data;
 }

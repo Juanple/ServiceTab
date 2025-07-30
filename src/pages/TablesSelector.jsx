@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { post } from "../services/post";
+import { post } from '../services/post.js';
 
 export default function TablesSelector(){
         
@@ -10,6 +10,7 @@ export default function TablesSelector(){
     let rangeNumber;
 
     const [range, setRange] = useState(rangeOne); // UseState de los range
+    const [selectedRange, setSelectedRange] = useState(1); // UseState de estilos
 
     if (range[0] == rangeOne[0]) {
         rangeNumber = 1;
@@ -22,19 +23,29 @@ export default function TablesSelector(){
     const navigate = useNavigate();
     async function selectTable(table) { // Funcion para seleccionar la mesa
         await post({'table': table, 'range': rangeNumber}, '/tables');
-        navigate(`menu-general/`);
+        navigate('menu-general/');
     }
 
     return (
         <div className="flex flex-col container">
-            <div>
-                <button className="bg-gray-300 p-2" onClick={() => {setRange(rangeOne)}}>Rango 1</button>
-                <button className="bg-gray-300 p-2" onClick={() => {setRange(rangeTwo)}}>Rango 2</button>
-                <button className="bg-gray-300 p-2" onClick={() => {setRange(rangeThree)}}>Rango 3</button>                
+            <div className="flex flex-row w-full gap-2">
+
+                <button className={`p-2 relative overflow-hidden after:content-[''] after:w-0 after:h-1 after:bg-[#E5E5FF] after:absolute after:bottom-0 after:left-0
+                ${selectedRange === 1 ? 'after:w-full' : 'after:w-0'}`} // Si el boton esta seleccionado hace el efecto de slash
+                onClick={() => {setRange(rangeOne); setSelectedRange(1);}}>Rango 1</button>
+
+                <button className={`p-2 relative overflow-hidden after:content-[''] after:w-0 after:h-1 after:bg-[#E5E5FF] after:absolute after:bottom-0 after:left-0
+                ${selectedRange === 2 ? 'after:w-full' : 'after:w-0'}`} // Si el boton esta seleccionado hace el efecto de slash
+                onClick={() => {setRange(rangeTwo); setSelectedRange(2);}}>Rango 2</button>
+
+                <button className={`p-2 relative overflow-hidden after:content-[''] after:w-0 after:h-1 after:bg-[#E5E5FF] after:absolute after:bottom-0 after:left-0
+                ${selectedRange === 3 ? 'after:w-full' : 'after:w-0'}`} // Si el boton esta seleccionado hace el efecto de slash
+                onClick={() => {setRange(rangeThree); setSelectedRange(3);}}>Rango 3</button>
+
             </div>
-            <div className="flex gap-1 flex-wrap container">
+            <div className="flex gap-1 flex-wrap container p-2">
                 {range.map((table, index) => (
-                    <button key={index} className="bg-blue-200" onClick={() => (selectTable(table))}>{table}</button>
+                    <button key={index} className="bg-[#9999FF] text-lg p-2" onClick={() => (selectTable(table))}>{table}</button>
                 ))}
             </div>
         </div>

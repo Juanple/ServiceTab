@@ -14,8 +14,8 @@ def saveProductInfo():
     cursor = connection.cursor()
 
     # Insertar datos en la db
-    cursor.execute('INSERT INTO product(name, price, idcomanda, idmesa) ' 
-    'VALUES(%s, %s, %s, %s)', (name, price, session.idcomanda, session.idmesa))
+    cursor.execute('INSERT INTO product(name, price, idcomanda) ' 
+    'VALUES(%s, %s, %s)', (name, price, session.idcomanda))
 
     connection.commit()
     cursor.close()

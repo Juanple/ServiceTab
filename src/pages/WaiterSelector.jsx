@@ -4,10 +4,10 @@ import { post } from "../services/post";
 export default function WaiterSelector(){
 
     let waiterList = [ // Lista de todos los camareros
-        {'name': 'Gonza', 'pictureURL': undefined, 'color': 'blue'},
-        {'name': 'Camarero1', 'pictureURL': undefined, 'color': 'yellow'},
-        {'name': 'Camarero2', 'pictureURL': undefined, 'color': 'blue'},
-        {'name': 'Camarero3', 'pictureURL': undefined, 'color': 'red'},
+        {'name': 'Gonza', 'pictureURL': '../../public/gonza.avif', 'color': undefined},
+        {'name': 'Cam3', 'pictureURL': '../../public/camarero1.jpg', 'color': undefined},
+        {'name': 'Mauricio', 'pictureURL': '../../public/mauricio.avif', 'color': undefined},
+        {'name': 'Guille', 'pictureURL': '../../public/guille.jpg', 'color': undefined},
     ]
 
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ export default function WaiterSelector(){
     }
 
     return (
-        <div className="flex container w-full flex-wrap gap-2 h-full">
+        <div className="flex container w-full flex-wrap gap-2 h-full p-2">
             {waiterList.map((waiter, index) => {
 
                 // Estilo de boton sin foto
@@ -27,10 +27,16 @@ export default function WaiterSelector(){
                                     style={{'--color': waiter['color']/* Definir variable de color*/}}
                                     onClick={() => (selectWaiter(waiter['name']))} /* Llamar a la funcion*/> 
                                     {waiter['name']}</button>); // Definir el nombre del camarero
-                }
+                } 
+                else { // Estilo del boton con foto
+                    return (<button 
+                    onClick={() => (selectWaiter(waiter['name']))} /* Llamar a la funcion*/
+                    className="relative overflow-hidden active:scale-90 hover:text cursor-pointer"> {/* Estilos */}
 
-                // Estilo de boton con foto
-                return null;
+                        <img src={waiter['pictureURL']} className="h-20"></img>
+                        <p className="absolute bottom-0 bg-[#000066]/40 w-full text-white font-bold text-sm">{waiter['name']}</p>
+                    </button>)
+                }
             })}
         </div>
     )

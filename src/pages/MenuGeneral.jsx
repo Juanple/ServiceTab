@@ -18,7 +18,7 @@ export default function MenuGeneral(){
     return (
         <>
         <OrderSummary></OrderSummary>
-        <div className="flex flex-wrap w-full gap-2">            
+        <div className="flex flex-wrap w-full gap-2 p-2">            
             {menuGeneralList.map((section, index) => {
 
                 // Estilo de boton sin foto
