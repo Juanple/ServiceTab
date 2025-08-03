@@ -4,7 +4,7 @@ import session
 
 orderSummary = Blueprint('orderSummary', __name__)
 
-@orderSummary.route('/tables/menu-general/', methods=['GET'])
+@orderSummary.route('/tables/menu-general/order-summary', methods=['GET'])
 def getOrderSummaryInfo():
 
     connection = getConnection()

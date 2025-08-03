@@ -1,6 +1,7 @@
 import { post } from "../services/post"
 import OrderSummary from '../components/OrderSummary'
 import { useState } from "react"
+import Footer from "../components/Footer"
 
 export default function Tapas() {
     
@@ -18,7 +19,7 @@ export default function Tapas() {
     return (
         <div>
             <OrderSummary key={orderKey}></OrderSummary>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 p-2">
             {tapasList.map((product, index) => {
                 if (product['imageURL'] == undefined) { // Si no tiene imagen asignada
                     return <button
@@ -33,6 +34,7 @@ export default function Tapas() {
                 }
             })}
             </div>
+            <Footer/>
         </div>
     )
 }

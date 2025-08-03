@@ -27,27 +27,47 @@ export default function TablesSelector(){
     }
 
     return (
-        <div className="flex flex-col container">
-            <div className="flex flex-row w-full gap-2">
+        <div>
+            <div className="flex flex-col container">
+                <div className="flex flex-row w-full gap-2">
 
-                <button className={`p-2 relative overflow-hidden after:content-[''] after:w-0 after:h-1 after:bg-[#E5E5FF] after:absolute after:bottom-0 after:left-0
-                ${selectedRange === 1 ? 'after:w-full' : 'after:w-0'}`} // Si el boton esta seleccionado hace el efecto de slash
-                onClick={() => {setRange(rangeOne); setSelectedRange(1);}}>Rango 1</button>
+                    <button className={`p-2 relative overflow-hidden after:content-[''] after:w-0 after:h-1 after:bg-[#E5E5FF] after:absolute after:bottom-0 after:left-0
+                    ${selectedRange === 1 ? 'after:w-full' : 'after:w-0'}`} // Si el boton esta seleccionado hace el efecto de slash
+                    onClick={() => {setRange(rangeOne); setSelectedRange(1);}}>Rango 1</button>
 
-                <button className={`p-2 relative overflow-hidden after:content-[''] after:w-0 after:h-1 after:bg-[#E5E5FF] after:absolute after:bottom-0 after:left-0
-                ${selectedRange === 2 ? 'after:w-full' : 'after:w-0'}`} // Si el boton esta seleccionado hace el efecto de slash
-                onClick={() => {setRange(rangeTwo); setSelectedRange(2);}}>Rango 2</button>
+                    <button className={`p-2 relative overflow-hidden after:content-[''] after:w-0 after:h-1 after:bg-[#E5E5FF] after:absolute after:bottom-0 after:left-0
+                    ${selectedRange === 2 ? 'after:w-full' : 'after:w-0'}`} // Si el boton esta seleccionado hace el efecto de slash
+                    onClick={() => {setRange(rangeTwo); setSelectedRange(2);}}>Rango 2</button>
 
-                <button className={`p-2 relative overflow-hidden after:content-[''] after:w-0 after:h-1 after:bg-[#E5E5FF] after:absolute after:bottom-0 after:left-0
-                ${selectedRange === 3 ? 'after:w-full' : 'after:w-0'}`} // Si el boton esta seleccionado hace el efecto de slash
-                onClick={() => {setRange(rangeThree); setSelectedRange(3);}}>Rango 3</button>
+                    <button className={`p-2 relative overflow-hidden after:content-[''] after:w-0 after:h-1 after:bg-[#E5E5FF] after:absolute after:bottom-0 after:left-0
+                    ${selectedRange === 3 ? 'after:w-full' : 'after:w-0'}`} // Si el boton esta seleccionado hace el efecto de slash
+                    onClick={() => {setRange(rangeThree); setSelectedRange(3);}}>Rango 3</button>
 
+                </div>
+                <div className="flex gap-1 flex-wrap container p-2">
+                    {range.map((table, index) => (
+                        <button key={index} className="bg-[#9999FF] text-lg p-2" onClick={() => (selectTable(table))}>{table}</button>
+                    ))}
+                </div>
             </div>
-            <div className="flex gap-1 flex-wrap container p-2">
-                {range.map((table, index) => (
-                    <button key={index} className="bg-[#9999FF] text-lg p-2" onClick={() => (selectTable(table))}>{table}</button>
-                ))}
-            </div>
+
+            {/* Footer */}
+            <footer className="flex gap-1 bg-gray-200 p-1 border-[1px] border-gray-300 fixed w-full bottom-0 justify-between">
+                <div className="flex gap-1">
+                    <button className="p-2 bg-white border-[1px] border-gray-300 cursor-pointer">
+                        <i className="fa-solid fa-rotate text-[#03325E] text-[1.5rem]"></i>
+                    </button>
+
+                    <button className="p-2 bg-white border-[1px] border-gray-300 cursor-pointer">
+                        <i className="fa-solid fa-key text-[#03325E] text-[1.5rem]"></i>
+                    </button>
+                </div>
+                <button 
+                onClick={() => navigate(-1)}
+                className="p-2 bg-white border-[1px] border-gray-300 cursor-pointer">
+                    <i className="fa-solid fa-arrow-left text-[#03325E] text-[1.5rem]"></i>
+                </button>
+            </footer>
         </div>
     )
 }

@@ -3,7 +3,7 @@ import pymysql
 def getConnection():
     return pymysql.connect(
     host = 'localhost',
-    user = 'root',
+    user = 'servicetab',
     password = 'Dequa20.',
     database = 'servicetab'
 )

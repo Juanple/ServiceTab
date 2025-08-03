@@ -38,6 +38,10 @@ export default function Header() {
             text = 'Tapas'
             emoji = <i className="fa-solid fa-bowl-rice"></i>
             break
+        case '/tables/menu-general/actual-ticket':
+            text = 'Ticket actual'
+            emoji = <i className="fa-solid fa-ticket"></i>
+            break
     };
 
 

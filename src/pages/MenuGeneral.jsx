@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import OrderSummary from '../components/OrderSummary'
+import Header from '../components/Header'
+import Footer from "../components/Footer"
 
 export default function MenuGeneral(){
     
@@ -37,6 +39,7 @@ export default function MenuGeneral(){
                 }
             })}
         </div>
+        <Footer></Footer>
         </>
     )
 }
