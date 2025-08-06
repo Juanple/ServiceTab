@@ -5,7 +5,7 @@ from routes.comanda import saveComandaInfo
 
 table = Blueprint('table',__name__)
 
-@table.route('/tables', methods=['POST'])
+@table.route('/tables', methods=['POST']) #POST
 def saveTableInfo():
     data = request.get_json()
     tableNumber = data['table']
@@ -33,5 +33,37 @@ def saveTableInfo():
     saveComandaInfo()
 
     return jsonify({'message': 'Mesa añadida'}), 201
+
+@table.route('/tables', methods=['GET']) # GET solo de numero de mesa activo
+def getActiveTables():
+
+    connection = getConnection()
+    cursor = connection.cursor()
+
+    cursor.execute('SELECT tableNumber FROM mesa')
+    response = cursor.fetchall()
+
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+    return jsonify({'data': response}), 200
+
+@table.route('/tables/<int:table_number>', methods=['DELETE']) # DELETE
+def deleteTable(table_number):
+
+    connection = getConnection()
+    cursor = connection.cursor()
+
+    if table_number < 231 or table_number > 350:
+        return jsonify({'response': f'La mesa {table_number} no existe'})
+    
+    cursor.execute('DELETE FROM mesa WHERE tableNumber = %s', (table_number, ))
+
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+    return jsonify({'response': 'Mesa cerrada'}), 200
 
 

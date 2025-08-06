@@ -38,7 +38,7 @@ def getProductInfo():
 
     return jsonify({'data': response}), 200
 
-@product.route(f'/tables/menu-general/<int:id_product>', methods=['DELETE']) # DELETE
+@product.route('/tables/menu-general/<int:id_product>', methods=['DELETE']) # DELETE
 def deleteProduct(id_product):
     connection = getConnection()
     cursor = connection.cursor()

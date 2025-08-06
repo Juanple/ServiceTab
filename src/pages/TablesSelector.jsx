@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { post } from '../services/post.js';
+import { act } from "react";
 
 export default function TablesSelector(){
         
@@ -8,6 +9,13 @@ export default function TablesSelector(){
     const rangeTwo = [301,302,303,304,305,306,307,308,309,310,311,312,313,300];
     const rangeThree = [314,315,316,317,318,319,320,321,323,324,330,340,350];
     let rangeNumber;
+    const [activeTables, setActiveTables] = useState([]); // UseState de las mesas activas
+
+    useEffect(() => { // Get de mesas activas
+        fetch('http://127.0.0.1:5000/tables', {method: 'GET'})
+        .then(res => res.json())
+        .then(data => {setActiveTables(data['data']);})
+    }, [])
 
     const [range, setRange] = useState(rangeOne); // UseState de los range
     const [selectedRange, setSelectedRange] = useState(1); // UseState de estilos
@@ -24,6 +32,11 @@ export default function TablesSelector(){
     async function selectTable(table) { // Funcion para seleccionar la mesa
         await post({'table': table, 'range': rangeNumber}, '/tables');
         navigate('menu-general/');
+    }
+
+    function resetTables() { // Funcion de resetear todo
+        fetch('http://127.0.0.1:5000/reset', {method: 'DELETE'});
+        setActiveTables([''])
     }
 
     return (
@@ -44,24 +57,42 @@ export default function TablesSelector(){
                     onClick={() => {setRange(rangeThree); setSelectedRange(3);}}>Rango 3</button>
 
                 </div>
+                
                 <div className="flex gap-1 flex-wrap container p-2">
-                    {range.map((table, index) => (
-                        <button key={index} className="bg-[#9999FF] text-lg p-2" onClick={() => (selectTable(table))}>{table}</button>
-                    ))}
+                    {range.map((table, index) => {
+                        for(let i=0; i<activeTables.length; i++){
+
+                            if(activeTables[i] == table) { {/* Estilos mesa activa */}
+                                return (<button key={index} className="bg-[#7e6e9a] relative text-lg p-2" onClick={() => (selectTable(table))}>
+                                    <p>{table}</p>
+                                    <i className="fa-solid fa-clock absolute text-[0.8rem] top-[-5px] right-[-5px]"></i>
+                                </button>)
+
+                            }
+                        }
+                        {/* Estilos mesa desactivada */}
+                        return (<button key={index} className="bg-[#9999FF] relative text-lg p-2" onClick={() => (selectTable(table))}>{table}</button>)
+
+                    })}
                 </div>
             </div>
 
             {/* Footer */}
             <footer className="flex gap-1 bg-gray-200 p-1 border-[1px] border-gray-300 fixed w-full bottom-0 justify-between">
                 <div className="flex gap-1">
-                    <button className="p-2 bg-white border-[1px] border-gray-300 cursor-pointer">
+                    <button 
+                    onClick={() => {resetTables()}}
+                    className="p-2 bg-white border-[1px] border-gray-300 cursor-pointer">
                         <i className="fa-solid fa-rotate text-[#03325E] text-[1.5rem]"></i>
                     </button>
 
-                    <button className="p-2 bg-white border-[1px] border-gray-300 cursor-pointer">
+                    <button 
+                    onClick={() => (navigate('/tables/close-table'))}
+                    className="p-2 bg-white border-[1px] border-gray-300 cursor-pointer">
                         <i className="fa-solid fa-key text-[#03325E] text-[1.5rem]"></i>
                     </button>
                 </div>
+
                 <button 
                 onClick={() => navigate(-1)}
                 className="p-2 bg-white border-[1px] border-gray-300 cursor-pointer">

@@ -30,6 +30,10 @@ export default function Header() {
             text = 'Seleccionar mesa'
             emoji = <i className="fa-solid fa-chair"></i>
             break
+        case '/tables/close-table':
+            text = 'Cerrar mesa'
+            emoji = <i className="fa-solid fa-key"></i>
+            break
         case '/tables/menu-general/':
             text = 'Menu General'
             emoji = <i className="fa-solid fa-newspaper"></i>
