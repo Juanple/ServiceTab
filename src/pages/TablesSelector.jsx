@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { post } from '../services/post.js';
-import { act } from "react";
+import Comensales from "../components/Comensales.jsx"; 
 
 export default function TablesSelector(){
         
@@ -28,10 +28,15 @@ export default function TablesSelector(){
         rangeNumber = 3;
     }
 
+    const [comensalesPage, setComensalesPage] = useState()
     const navigate = useNavigate();
-    async function selectTable(table) { // Funcion para seleccionar la mesa
-        await post({'table': table, 'range': rangeNumber}, '/tables');
-        navigate('menu-general/');
+    async function selectTable(table, comensales, active) { // Funcion para seleccionar la mesa
+        if (active == false) {
+            setComensalesPage(<Comensales selectTable={selectTable} tableNumber={table} />);
+        } else {
+            await post({'table': table, 'range': rangeNumber, 'comensales': comensales}, '/tables');
+            navigate('menu-general/');
+        }
     }
 
     function resetTables() { // Funcion de resetear todo
@@ -41,6 +46,7 @@ export default function TablesSelector(){
 
     return (
         <div>
+            {comensalesPage}
             <div className="flex flex-col container">
                 <div className="flex flex-row w-full gap-2">
 
@@ -63,7 +69,7 @@ export default function TablesSelector(){
                         for(let i=0; i<activeTables.length; i++){
 
                             if(activeTables[i] == table) { {/* Estilos mesa activa */}
-                                return (<button key={index} className="bg-[#7e6e9a] relative text-lg p-2" onClick={() => (selectTable(table))}>
+                                return (<button key={index} className="bg-[#7e6e9a] relative text-lg p-2" onClick={() => (selectTable(table,0,true))}>
                                     <p>{table}</p>
                                     <i className="fa-solid fa-clock absolute text-[0.8rem] top-[-5px] right-[-5px]"></i>
                                 </button>)
@@ -71,7 +77,7 @@ export default function TablesSelector(){
                             }
                         }
                         {/* Estilos mesa desactivada */}
-                        return (<button key={index} className="bg-[#9999FF] relative text-lg p-2" onClick={() => (selectTable(table))}>{table}</button>)
+                        return (<button key={index} className="bg-[#9999FF] relative text-lg p-2" onClick={() => (selectTable(table,0,false))}>{table}</button>)
 
                     })}
                 </div>

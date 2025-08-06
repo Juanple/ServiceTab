@@ -6,12 +6,12 @@ import Footer from "../components/Footer"
 export default function Tapas() {
     
     const tapasList = [
-        {'name': 'Aceitunas', 'price': 5, 'imageURL': undefined, 'color': '#ff8969', 'target': 'aceitunas'},
-        {'name': 'Pan Cristal', 'price': 7, 'imageURL': undefined, 'color': '#ff8969', 'target': 'pan'},
-        {'name': 'Coca de queso', 'price': 15, 'imageURL': undefined, 'color': '#ff8969', 'target': 'coca'},
-        {'name': 'Figat', 'price': 18, 'imageURL': undefined, 'color': '#FFD700', 'target': 'figat'},
-        {'name': 'Croquetas', 'price': 14, 'imageURL': undefined, 'color': '#FFD700', 'target': 'croquetas'},
-        {'name': 'Jamon Ibérico', 'price': 29, 'imageURL': undefined, 'color': '#FFD700', 'target': 'jamon'}
+        {'name': 'Aceitunas', 'price': 5.00, 'imageURL': undefined, 'color': '#ff8969', 'target': 'aceitunas'},
+        {'name': 'Pan Cristal', 'price': 7.00, 'imageURL': undefined, 'color': '#ff8969', 'target': 'pan'},
+        {'name': 'Coca de queso', 'price': 15.00, 'imageURL': undefined, 'color': '#ff8969', 'target': 'coca'},
+        {'name': 'Figat', 'price': 18.00, 'imageURL': undefined, 'color': '#FFD700', 'target': 'figat'},
+        {'name': 'Croquetas', 'price': 14.00, 'imageURL': undefined, 'color': '#FFD700', 'target': 'croquetas'},
+        {'name': 'Jamon Ibérico', 'price': 29.00, 'imageURL': undefined, 'color': '#FFD700', 'target': 'jamon'}
     ]
 
     const [orderKey, setOrderKey] = useState(0); // Esto sirve para recargar el orderSummary mediante su key

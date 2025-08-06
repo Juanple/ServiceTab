@@ -4,8 +4,8 @@ export default function OrderSummary() {
     
     const [rangeNumber, setRangeNumber] = useState(null);
     const [tableNumber, setTableNumber] = useState(null);
-    let comensales = 4;
-    let totalPrice = 0;
+    const [comensales, setComensales] = useState(null);
+    let totalPrice = 0.00;
     const [productList, setProductList] = useState(['', '']);
 
     useEffect(() => {
@@ -16,11 +16,12 @@ export default function OrderSummary() {
         setRangeNumber(data['rangeNumber']);
         setTableNumber(data['tableNumber']);
         setProductList(data['productList']);
+        setComensales(data['comensales']);
     })
     }, []);
     
     for (let i = 0; i<productList.length; i++) {
-        totalPrice += productList[i][1]; // Precio total aumentar
+        totalPrice += parseFloat(productList[i][1]); // Precio total aumentar
     }
 
     return (

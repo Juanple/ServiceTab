@@ -23,7 +23,7 @@ export default function ActualTicket() {
     for(let i=0; i<productList.length; i++) {
         if (productList[i][2] != '') {
             let price = productList[i][2];
-            totalPrice += parseInt(price);
+            totalPrice += parseFloat(price);
         }
     }
 
