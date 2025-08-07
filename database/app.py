@@ -7,6 +7,8 @@ from routes.product import product
 from services.header import header
 from services.orderSummary import orderSummary
 from services.reset import reset
+from services.printTicket import printTicket
+from services.printCuenta import printCuenta
 
 app = Flask(__name__)
 CORS(app)
@@ -18,6 +20,8 @@ app.register_blueprint(product)
 app.register_blueprint(header)
 app.register_blueprint(orderSummary)
 app.register_blueprint(reset)
+app.register_blueprint(printTicket)
+app.register_blueprint(printCuenta)
 
 if __name__ == '__main__':
     app.run(debug=True)
